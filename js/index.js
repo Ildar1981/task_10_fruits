@@ -267,28 +267,21 @@ sortActionName.addEventListener("click", () => {
 /*** ДОБАВИТЬ ФРУКТ ***/
 
 addActionButton.addEventListener("click", () => {
-  // Создание и добавление нового фрукта в массив fruits
   if (
     kindInput.value === "" ||
     colorInput.value === "" ||
     weightInput.value === ""
   ) {
-    alert("Одно или несколько полей не заполнены!");
+    alert("Заполните сперва поля!");
   } else {
-    if (isNaN(weightInput.value)) {
-      alert("Вес должен быть указан числом!");
-      weightInput.value = "";
-    } else {
       fruits.push({
         kind: kindInput.value,
         color: colorInput.value,
         weight: weightInput.value,
       });
       display();
-      // Очистка полей после добавления фрукта
       kindInput.value = "";
       colorInput.value = "";
       weightInput.value = "";
     }
-  }
-});
+  });
