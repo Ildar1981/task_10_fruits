@@ -171,17 +171,17 @@ const comparationColor = (a, b) => {
 
 //функция сортировки по наименованию
 function sortName(arr) {
-  return arr.sort(function(a, b) {
-      var first = a.kind.toUpperCase(); // Приводим наименование к верхнему регистру для корректного сравнения
-      var second = b.kind.toUpperCase();
+  return arr.sort(function (a, b) {
+    var first = a.kind.toUpperCase(); // Приводим наименование к верхнему регистру для корректного сравнения
+    var second = b.kind.toUpperCase();
 
-      if (first < second) {
-          return -1;
-      }
-      if (first > second) {
-          return 1;
-      }
-      return 0;
+    if (first < second) {
+      return -1;
+    }
+    if (first > second) {
+      return 1;
+    }
+    return 0;
   });
 }
 
@@ -198,38 +198,38 @@ const sortAPI = {
     }
   },
   quickSort(items, left, right) {
-    let index
+    let index;
     if (items.length > 1) {
-        left = typeof left != "number" ? 0 : left;
-        right = typeof right != "number" ? items.length - 1 : right;
-        index = partition(items, left, right);
-        if (left < index - 1) {
-            quickSort(items, left, index - 1);
-        }
-        if (index < right) {
-            quickSort(items, index, right);
-        }
+      left = typeof left != "number" ? 0 : left;
+      right = typeof right != "number" ? items.length - 1 : right;
+      index = partition(items, left, right);
+      if (left < index - 1) {
+        quickSort(items, left, index - 1);
+      }
+      if (index < right) {
+        quickSort(items, index, right);
+      }
     }
     return items;
- },
-  selectionSort(arr, comparation){
-  // обратите внимание на список инициализаций в цикле
-  for (let i = 0, l = arr.length, k = l - 1; i < k; i++) {
+  },
+  selectionSort(arr, comparation) {
+    // обратите внимание на список инициализаций в цикле
+    for (let i = 0, l = arr.length, k = l - 1; i < k; i++) {
       let indexMin = i;
       // поиск минимального элемента в правой части массива
       for (let j = i + 1; j < l; j++) {
-          if (comparation(arr[indexMin], arr[j])) {
-              indexMin = j;
-          }
+        if (comparation(arr[indexMin], arr[j])) {
+          indexMin = j;
+        }
       }
       // проверка корректности поиска и обмен значениями
       // при обмене используется деструктуризация
       if (indexMin !== i) {
-          [arr[i], arr[indexMin]] = [arr[indexMin], arr[i]];
+        [arr[i], arr[indexMin]] = [arr[indexMin], arr[i]];
       }
-  }
-  return arr;
-},
+    }
+    return arr;
+  },
 
   // Выполняет сортировку и производит замер времени
   startSort(sort, arr, comparation) {
@@ -244,11 +244,13 @@ const sortAPI = {
 sortKindLabel.textContent = sortKind;
 sortTimeLabel.textContent = sortTime;
 
-// Переключать значение sortKind между 'bubbleSort' / 'quickSort'
+// Переключать значение sortKind между 'bubbleSort' / 'quickSort'/ selectionSort
 sortChangeButton.addEventListener("click", () => {
   sortKindLabel.textContent === "bubbleSort"
     ? (sortKindLabel.textContent = "quickSort")
-    : (sortKindLabel.textContent = "bubbleSort")
+    : sortKindLabel.textContent === "quickSort"
+    ? (sortKindLabel.textContent = "selectionSort")
+    : (sortKindLabel.textContent = "bubbleSort");
 });
 
 sortActionButton.addEventListener("click", () => {
@@ -259,7 +261,7 @@ sortActionButton.addEventListener("click", () => {
 });
 //сортировка по названию
 sortActionName.addEventListener("click", () => {
-  sortName(fruits)
+  sortName(fruits);
   display();
 });
 /*** ДОБАВИТЬ ФРУКТ ***/
