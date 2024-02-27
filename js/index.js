@@ -12,6 +12,7 @@ const weightInput = document.querySelector(".weight__input"); // поле с в�
 const addActionButton = document.querySelector(".add__action__btn"); // кнопка добавления
 const minWeight = document.querySelector(".minweight__input"); // поле min weight
 const maxWeight = document.querySelector(".maxweight__input");
+const sortActionName = document.querySelector(".sort__action__btn_name"); // кнопка сортировки по наименованию
 
 // список фруктов в JSON формате
 let fruitsJSON = `[
@@ -168,6 +169,22 @@ const comparationColor = (a, b) => {
   return color1 > color2;
 };
 
+//функция сортировки по наименованию
+function sortName(arr) {
+  return arr.sort(function(a, b) {
+      var first = a.kind.toUpperCase(); // Приводим наименование к верхнему регистру для корректного сравнения
+      var second = b.kind.toUpperCase();
+
+      if (first < second) {
+          return -1;
+      }
+      if (first > second) {
+          return 1;
+      }
+      return 0;
+  });
+}
+
 const sortAPI = {
   bubbleSort(arr, comparation) {
     for (let i = 0; i < arr.length; i++) {
@@ -195,6 +212,24 @@ const sortAPI = {
     }
     return items;
  },
+  selectionSort(arr, comparation){
+  // обратите внимание на список инициализаций в цикле
+  for (let i = 0, l = arr.length, k = l - 1; i < k; i++) {
+      let indexMin = i;
+      // поиск минимального элемента в правой части массива
+      for (let j = i + 1; j < l; j++) {
+          if (comparation(arr[indexMin], arr[j])) {
+              indexMin = j;
+          }
+      }
+      // проверка корректности поиска и обмен значениями
+      // при обмене используется деструктуризация
+      if (indexMin !== i) {
+          [arr[i], arr[indexMin]] = [arr[indexMin], arr[i]];
+      }
+  }
+  return arr;
+},
 
   // Выполняет сортировку и производит замер времени
   startSort(sort, arr, comparation) {
@@ -213,7 +248,7 @@ sortTimeLabel.textContent = sortTime;
 sortChangeButton.addEventListener("click", () => {
   sortKindLabel.textContent === "bubbleSort"
     ? (sortKindLabel.textContent = "quickSort")
-    : (sortKindLabel.textContent = "bubbleSort");
+    : (sortKindLabel.textContent = "bubbleSort")
 });
 
 sortActionButton.addEventListener("click", () => {
@@ -222,7 +257,11 @@ sortActionButton.addEventListener("click", () => {
   display();
   sortTimeLabel.textContent = sortTime;
 });
-
+//сортировка по названию
+sortActionName.addEventListener("click", () => {
+  sortName(fruits)
+  display();
+});
 /*** ДОБАВИТЬ ФРУКТ ***/
 
 addActionButton.addEventListener("click", () => {
