@@ -1,0 +1,12 @@
+{
+  "name": "fruits",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "🚀 Шаблон итоговой работы для модуля \"Базовый JS. Циклы и массивы\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

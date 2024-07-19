@@ -1,3 +1,7 @@
+import { fruitsJSON } from './fruits.js';
+import { priority } from '../const/const.js';
+
+
 // элементы в DOM можно получить при помощи функции querySelector
 const fruitsList = document.querySelector(".fruits__list"); // список карточек
 const shuffleButton = document.querySelector(".shuffle__btn"); // кнопка перемешивания
@@ -13,23 +17,12 @@ const addActionButton = document.querySelector(".add__action__btn"); // кноп
 const sortLenght = document.querySelector(".lenght__btn"); 
 const sortActionName = document.querySelector(".sort__action__btn_name"); // кнопка сортировки по наименованию
 
-// список фруктов в JSON формате
-let fruitsJSON = `[
-  {"human": "Рамис", "month": "Октябрь", "day": 24},
-  {"human": "Ялчын", "month": "Июль", "day": 1},
-  {"human": "Ринат", "month": "Август", "day": 21},
-  {"human": "Энже", "month": "Май", "day": 27},
-  {"human": "Ислам", "month": "Июль", "day": 26},
-  {"human": "Альберт", "month": "Июль", "day": 11},
-  {"human": "Миляуша-апа", "month": "Октябрь", "day": 21},
-  {"human": "Альберт-СЛУЖАК", "month": "Сентябрь", "day": 9},
-  {"human": "Дамир", "month": "undefined", "day": 1},
-  {"human": "Рамиль", "month": "undefined", "day": 1},
-  {"human": "Ильнар", "month": "undefined", "day": 1}
-]`;
+
+
 
 // преобразование JSON в объект JavaScript
 let fruits = JSON.parse(fruitsJSON);
+console.log(fruitsJSON)
 
 /*** ОТОБРАЖЕНИЕ ***/
 const daysArray = [];
@@ -102,8 +95,6 @@ const display = () => {
 // первая отрисовка карточек
 display();
 
-/*** ПЕРЕМЕШИВАНИЕ ***/
-
 // генерация случайного числа в заданном диапазоне
 const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -165,21 +156,7 @@ let sortTime = "-"; // инициализация состояния време�
 
 const comparationColor = (a, b) => {
   // TODO: допишите функцию сравнения двух элементов по цвету
-  const priority = [
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь",
-    "undefined"
-  ];
+  
   const color1 = priority.indexOf(a.month);
   const color2 = priority.indexOf(b.month);
   return color1 > color2;
@@ -200,8 +177,7 @@ function sortName(arr) {
     return 0;
   });
 }
-
-const sortAPI = {
+export const sortAPI = {
   bubbleSort(arr, comparation) {
     for (let i = 0; i < arr.length; i++) {
       for (let j = 0; j < arr.length - 1 - i; j++) {
