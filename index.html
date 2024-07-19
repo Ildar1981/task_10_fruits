@@ -4,33 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/index.css" />
-    <title>&#x1F34C;Экзотические фрукты</title>
+    <title>&#x1F34C;Даты рождений</title>
   </head>
 
   <body>
     <main>
       <!-- ПАНЕЛЬ УПРАВЛЕНИЯ -->
       <section class="panel__wrapper">
-        <h2 class="wrapper__title">⚙️ Панель управления</h2>
+        <h2 class="wrapper__title">⚙️ Панель ввода</h2>
 
         <div class="panel__devtools">
           <!-- TODO: при нажатии элементы массива перемешиваются в случайном порядке -->
           <button class="shuffle__btn line">Перемешать</button>
 
-          <div class="line" >
-            <!-- пользователь указывает нижнюю границу weight -->
-            <div >min weight:</div>
-            <input class="minweight__input" placeholder="минимальный вес" />
-          </div>
+          <button class="lenght__btn line">Сортировка по длине имени</button>
 
-          <div class="line">
-            <!-- пользователь указывает верхнюю границу weight -->
-            <div>max weight:</div>
-            <input class="maxweight__input" placeholder="максимальный вес"/>
-          </div>
-
-          <!-- TODO: при нажатии элементы массива фильтруются в пределах [minweight, maxweight] -->
-          <button class="filter__btn line">Фильтровать</button>
+          <button class="filter__btn line">Сортировка по дате</button>
 
           <div class="line">
             <span>Алгоритм сортировки:</span>
@@ -52,50 +41,54 @@
           <button class="sort__action__btn_name line">Сортировать по названию</button>
 
           <div class="line">
-            <div>  kind:  </div>
+            <div>  human:  </div>
             <select class="kind__input" >
             <option value=""></option>
-            <option value="Банан">Банан</option>
-            <option value="Мангустин">Мангустин</option>
-            <option value="Дуриан">Дуриан</option>
-            <option value="Личи">Личи</option>
-            <option value="Карамбола      ">Карамбола</option>
-            <option value="Тамаринд">Тамаринд</option>
-            <option value="Питая">Питая</option>
-            <option value="Кумкват">Кумкват</option>
-            <option value="Манго">Манго</option>
+            <option value="Рамис">Рамис</option>
+            <option value="Ялчын">Ялчын</option>
+            <option value="Ринат">Ринат</option>
+            <option value="Энже">Энже</option>
+            <option value="Ислам">Ислам</option>
+            <option value="Альберт">Альберт</option>
+            <option value="Альберт-СЛУЖАК">Альберт-СЛУЖАК</option>
+            <option value="Миляуша-апа">Миляуша-апа</option>
+            <option value="Ильнар">Ильнар</option>
           </select>
           </div>
 
           <div class="line">
-            <div>color:</div>
-            <select class="color__input" >
+            <div>Month:</div>
+            <select class="month__input" >
             <option value=""></option>
-            <option value="серый">серый</option>
-            <option value="зеленый">зеленый</option>
-            <option value="желтый">желтый</option>
-            <option value="розовый">розовый</option>
-            <option value="фиолетовый">фиолетовый</option>
-            <option value="розово-красный">розово-красный</option>
-            <option value="светло-коричневый">светло-коричневый</option>
-            <option value="оливковый">оливковый</option>
-            <option value="черный">черный</option>
+            <option value="Январь">Январь</option>
+            <option value="Февраль">Февраль</option>
+            <option value="Март">Март</option>
+            <option value="Апрель">Апрель</option>
+            <option value="Май">Май</option>
+            <option value="Июнь">Июнь</option>
+            <option value="Июль">Июль</option>
+            <option value="Август">Август</option>
+            <option value="Сентябрь">Сентябрь</option>
+            <option value="Октябрь">Октябрь</option>
+            <option value="Ноябрь">Ноябрь</option>
+            <option value="Декабрь">Декабрь</option>
+            
           </select>
           </div>
 
           <div class="line">
-            <div>weight:</div>
+            <div>day:</div>
             <input type="number" class="weight__input" />
           </div>
 
           <!-- TODO: при нажатии новый фрукт добавляется в конец списка -->
-          <button class="add__action__btn line">Добавить фрукт</button>
+          <button class="add__action__btn line">Добавить дату</button>
         </div>
       </section>
 
       <!-- СПИСОК ЭКЗОТИЧЕСКИХ ФРУКТОВ -->
       <section class="fruits__wrapper">
-        <h2 class="wrapper__title">🥑 Список экзотических фруктов</h2>
+        <h2 class="wrapper__title">🥑 Даты рождения</h2>
         <!-- TODO: формировать список динамически (то есть закоментированный код удалить) -->
         <ul class="fruits__list">
         </ul>

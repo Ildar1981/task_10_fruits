@@ -156,7 +156,9 @@ main {
 .fruit_pink {
  background: pink;
 }
-
+.fruit_undefined {
+  background: red;
+ }
 .fruit__info {
   display: flex;
   justify-content: center;

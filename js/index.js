@@ -7,78 +7,96 @@ const sortTimeLabel = document.querySelector(".sort__time"); // поле с вр
 const sortChangeButton = document.querySelector(".sort__change__btn"); // кнопка смены сортировки
 const sortActionButton = document.querySelector(".sort__action__btn"); // кнопка сортировки
 const kindInput = document.querySelector(".kind__input"); // поле с названием вида
-const colorInput = document.querySelector(".color__input"); // поле с названием цвета
+const colorInput = document.querySelector(".month__input"); // поле с названием цвета
 const weightInput = document.querySelector(".weight__input"); // поле с весом
 const addActionButton = document.querySelector(".add__action__btn"); // кнопка добавления
-const minWeight = document.querySelector(".minweight__input"); // поле min weight
-const maxWeight = document.querySelector(".maxweight__input");
+const sortLenght = document.querySelector(".lenght__btn"); 
 const sortActionName = document.querySelector(".sort__action__btn_name"); // кнопка сортировки по наименованию
 
 // список фруктов в JSON формате
 let fruitsJSON = `[
-  {"kind": "Мангустин", "color": "фиолетовый", "weight": 13},
-  {"kind": "Дуриан", "color": "зеленый", "weight": 35},
-  {"kind": "Личи", "color": "розово-красный", "weight": 17},
-  {"kind": "Карамбола", "color": "желтый", "weight": 28},
-  {"kind": "Тамаринд", "color": "светло-коричневый", "weight": 22}
+  {"human": "Рамис", "month": "Октябрь", "day": 24},
+  {"human": "Ялчын", "month": "Июль", "day": 1},
+  {"human": "Ринат", "month": "Август", "day": 21},
+  {"human": "Энже", "month": "Май", "day": 27},
+  {"human": "Ислам", "month": "Июль", "day": 26},
+  {"human": "Альберт", "month": "Июль", "day": 11},
+  {"human": "Миляуша-апа", "month": "Октябрь", "day": 21},
+  {"human": "Альберт-СЛУЖАК", "month": "Сентябрь", "day": 9},
+  {"human": "Дамир", "month": "undefined", "day": 1},
+  {"human": "Рамиль", "month": "undefined", "day": 1},
+  {"human": "Ильнар", "month": "undefined", "day": 1}
 ]`;
 
 // преобразование JSON в объект JavaScript
 let fruits = JSON.parse(fruitsJSON);
 
 /*** ОТОБРАЖЕНИЕ ***/
-
+const daysArray = [];
 // отрисовка карточек
 const display = () => {
   fruitsList.innerHTML = "";
 
   for (let i = 0; i < fruits.length; i++) {
-    const li = document.createElement("li");
-    li.classList.add("fruit__item");
-    if (fruits[i].color == "серый") {
-      li.classList.add("fruit_grey");
+    const span = document.createElement("li");
+    span.classList.add("fruit__item");
+    if (fruits[i].month == "Январь") {
+      span.classList.add("fruit_grey");
     }
-    if (fruits[i].color == "черный") {
-      li.classList.add("fruit_black");
+    if (fruits[i].month == "Февраль") {
+      span.classList.add("fruit_black");
     }
-    if (fruits[i].color == "розовый") {
-      li.classList.add("fruit_pink");
+    if (fruits[i].month == "Март") {
+      span.classList.add("fruit_pink");
     }
-    if (fruits[i].color == "оливковый") {
-      li.classList.add("fruit_olive");
+    if (fruits[i].month == "Апрель") {
+      span.classList.add("fruit_olive");
     }
-    if (fruits[i].color == "серый") {
-      li.classList.add("fruit_grey");
+    if (fruits[i].month == "Май") {
+      span.classList.add("fruit_grey");
     }
-    if (fruits[i].color == "фиолетовый") {
-      li.classList.add("fruit_violet");
+    if (fruits[i].month == "Июнь") {
+      span.classList.add("fruit_violet");
     }
-    if (fruits[i].color == "зеленый") {
-      li.classList.add("fruit_green");
+    if (fruits[i].month == "Июль") {
+      span.classList.add("fruit_green");
     }
-    if (fruits[i].color == "розово-красный") {
-      li.classList.add("fruit_carmazin");
+    if (fruits[i].month == "Август") {
+      span.classList.add("fruit_carmazin");
     }
-    if (fruits[i].color == "желтый") {
-      li.classList.add("fruit_yellow");
+    if (fruits[i].month == "Сентябрь") {
+      span.classList.add("fruit_yellow");
     }
-    if (fruits[i].color == "светло-коричневый") {
-      li.classList.add("fruit_lightbrown");
+    if (fruits[i].month == "Октябрь") {
+      span.classList.add("fruit_lightbrown");
+    }
+    if (fruits[i].month == "Ноябрь") {
+      span.classList.add("fruit_lightbrown");
+    }
+    if (fruits[i].month == "Декабрь") {
+      span.classList.add("fruit_lightbrown");
+    }
+    if (fruits[i].month == "undefined") {
+      span.classList.add("fruit_undefined");
     }
 
-    fruitsList.appendChild(li);
+    
+    fruitsList.appendChild(span)
 
     const div = document.createElement("div");
     div.classList.add("fruit__info");
-    li.appendChild(div);
+    span.appendChild(div);
 
     div.innerHTML = `
   <div>index: ${i + 1}</div>
-  <div>kind: ${fruits[i].kind}</div>
-  <div>color: ${fruits[i].color}</div>
-  <div>weight (кг): ${fruits[i].weight}</div>
+  <div>kind: ${fruits[i].human}</div>
+  <div>color: ${fruits[i].month}</div>
+  <div>day: ${fruits[i].day}</div>
+  <div>не забыть поздравить!!</div>
   `;
+  daysArray.push(fruits[i].day);
   }
+  
 };
 
 // первая отрисовка карточек
@@ -114,37 +132,31 @@ shuffleButton.addEventListener("click", () => {
   display();
 });
 
-/*** ФИЛЬТРАЦИЯ ***/
-
-// фильтрация массива
-const filterFruits = () => {
-  return fruits.filter((item) => {
-    // TODO: допишите функцию
-    const max = parseInt(maxWeight.value);
-    const min = parseInt(minWeight.value);
-    if (max < 0 || min < 0) {
-      alert("Вес не должен быть отрицательным!");
-      maxWeight.value = "";
-      minWeight.value = "";
-      return fruits;
-    }
-    if (isNaN(max) || isNaN(min)) {
-      alert("Только числовой!");
-      maxWeight.value = "";
-      minWeight.value = "";
-      return fruits;
-    }
-    if (max < min) {
-      [max, min] = [min, max];
-    }
-    return item.weight >= min && item.weight <= max;
+function sortNumbers(arr) {
+  arr.sort(function(a, b) {
+    return a.day - b.day; // Используем a.day и b.day для сортировки
   });
-};
+
+  return arr;
+}
 
 filterButton.addEventListener("click", () => {
-  fruits = filterFruits();
+  sortNumbers(fruits); // Изменяем daysArray на fruits
   display();
+  console.log(fruits); // Изменяем daysArray на fruits
 });
+
+function sortByNameLength(arr) {
+  arr.sort(function(a, b) {
+    return a.human.length - b.human.length; // Сортируем по длине имени
+  });
+  return arr;
+}
+
+sortLenght.addEventListener("click", ()=>{
+  sortByNameLength(fruits);
+  display();
+} )
 
 /*** СОРТИРОВКА ***/
 
@@ -154,26 +166,30 @@ let sortTime = "-"; // инициализация состояния време�
 const comparationColor = (a, b) => {
   // TODO: допишите функцию сравнения двух элементов по цвету
   const priority = [
-    "зеленый",
-    "желтый",
-    "фиолетовый",
-    "розово-красный",
-    "светло-коричневый",
-    "черный",
-    "серый",
-    "розовый",
-    "оливковый",
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь",
+    "undefined"
   ];
-  const color1 = priority.indexOf(a.color);
-  const color2 = priority.indexOf(b.color);
+  const color1 = priority.indexOf(a.month);
+  const color2 = priority.indexOf(b.month);
   return color1 > color2;
 };
 
 //функция сортировки по наименованию
 function sortName(arr) {
   return arr.sort(function (a, b) {
-    var first = a.kind.toUpperCase(); // Приводим наименование к верхнему регистру для корректного сравнения
-    var second = b.kind.toUpperCase();
+    var first = a.human.toUpperCase(); // Приводим наименование к верхнему регистру для корректного сравнения
+    var second = b.human.toUpperCase();
 
     if (first < second) {
       return -1;
@@ -275,9 +291,9 @@ addActionButton.addEventListener("click", () => {
     alert("Заполните сперва поля!");
   } else {
       fruits.push({
-        kind: kindInput.value,
-        color: colorInput.value,
-        weight: weightInput.value,
+        human: kindInput.value,
+        month: colorInput.value,
+        day: weightInput.value,
       });
       display();
       kindInput.value = "";
@@ -285,3 +301,6 @@ addActionButton.addEventListener("click", () => {
       weightInput.value = "";
     }
   });
+
+
+
